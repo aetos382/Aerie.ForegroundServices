@@ -31,6 +31,7 @@ namespace Aerie.ForegroundServices
 
             Console.WriteLine("Press any key to exit.");
 
+            // Do not wait synchronously !! (for example by Console.ReadKey)
             await ConsoleEx.ReadKeyAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
 
             this._logger.LogInformation("Shutting down...");
