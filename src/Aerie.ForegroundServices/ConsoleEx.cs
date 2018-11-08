@@ -11,12 +11,19 @@ namespace Aerie.ForegroundServices
             CancellationToken cancellationToken = default)
         {
             var tcs = new TaskCompletionSource<ConsoleKeyInfo>();
-            cancellationToken.Register(() => tcs.TrySetCanceled(cancellationToken));
 
             Task.Run(() => {
 
                 try
                 {
+                    SpinWait.SpinUntil(() => !(Console.KeyAvailable || cancellationToken.IsCancellationRequested));
+
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        tcs.TrySetCanceled(cancellationToken);
+                        return;
+                    }
+
                     var key = Console.ReadKey(intercept);
                     tcs.TrySetResult(key);
                 }
@@ -29,6 +36,5 @@ namespace Aerie.ForegroundServices
 
             return tcs.Task;
         }
-
     }
 }
