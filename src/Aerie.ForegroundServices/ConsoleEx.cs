@@ -16,7 +16,7 @@ namespace Aerie.ForegroundServices
 
                 try
                 {
-                    SpinWait.SpinUntil(() => !(Console.KeyAvailable || cancellationToken.IsCancellationRequested));
+                    SpinWait.SpinUntil(() => Console.KeyAvailable || cancellationToken.IsCancellationRequested);
 
                     if (cancellationToken.IsCancellationRequested)
                     {
