@@ -91,6 +91,8 @@ namespace Aerie.ForegroundServices
 
             foreach (var service in this._foregroundServices)
             {
+                this._applicationLifetime.ApplicationStopping.ThrowIfCancellationRequested();
+
                 try
                 {
                     var task = service.RunAsync(this._applicationLifetime.ApplicationStopping);
