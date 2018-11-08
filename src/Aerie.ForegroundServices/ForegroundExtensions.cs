@@ -36,27 +36,8 @@ namespace Aerie.ForegroundServices
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            return UseForegroundLifetime<TForegroundService>(builder, null);
-        }
-
-        [NotNull]
-        public static IHostBuilder UseForegroundLifetime<TForegroundService>(
-            [NotNull] this IHostBuilder builder,
-            [CanBeNull] ForegroundServiceLifetimeOptions options)
-            where TForegroundService : class, IForegroundService
-        {
-            if (builder == null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
-
             builder.ConfigureServices(services => {
                 AddForegroundService<TForegroundService>(services);
-
-                if (options != null)
-                {
-                    services.AddSingleton(Options.Create(options));
-                }
             });
 
             return builder;
