@@ -96,14 +96,14 @@ namespace Aerie.ForegroundServices
                     var task = service.RunAsync(this._applicationLifetime.ApplicationStopping);
 
                     task.ContinueWith(
-                        t => this._logger?.LogError(t.Exception, t.Exception.Message),
+                        t => this._logger.LogError(t.Exception, t.Exception.Message),
                         TaskContinuationOptions.OnlyOnFaulted);
 
                     tasks.Add(task);
                 }
                 catch (Exception ex)
                 {
-                    this._logger?.LogError(ex, ex.Message);
+                    this._logger.LogError(ex, ex.Message);
                 }
             }
 
