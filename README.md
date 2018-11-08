@@ -42,7 +42,7 @@ ConsoleLifetime の代わりに [ForegroundLifetime クラス](src/Aerie.Foregro
 ## 注意点
 これはフォアグラウンド サービスに限らず、バックグラウンド サービスにも言えることなのですが、**サービス内で同期的にスレッドを止めてはいけません。** 最悪、他のサービスが全部止まります。
 
-通常、バックグラウンド サービスは（半）無限ループを回して、その中で I/O 待ちなどの非同期処理を行うことが多いので、自然と非同期になると思いますが、フォアグラウンド サービスは、通常のシングル スレッドなコンソール アプリケーションの使用感に似せたものなので、うっかり [Console.ReadKey メソッド](https://docs.microsoft.com/ja-jp/dotnet/api/system.console.readkey?view=netcore-2.1) などで止めないようにしてください。
+バックグラウンド サービスは（半）無限ループを回して、その中で I/O 待ちなどの非同期処理を行うことが多いので、自然と非同期になると思いますが、フォアグラウンド サービスは、シングル スレッドなコンソール アプリケーションの使用感に似せたものなので、うっかり [Console.ReadKey メソッド](https://docs.microsoft.com/ja-jp/dotnet/api/system.console.readkey?view=netcore-2.1) などで止めないようにしてください。
 
 ## ぼやき
 [CancellationToken](https://docs.microsoft.com/ja-jp/dotnet/api/system.threading.cancellationtoken?redirectedfrom=MSDN&view=netcore-2.1) を [汎用的なシグナル機構として使う](https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.extensions.hosting.iapplicationlifetime.applicationstarted?view=aspnetcore-2.1) のはどうなんですかね…
