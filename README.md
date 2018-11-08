@@ -35,7 +35,7 @@ Main メソッド内で [IHost.RunAsync 拡張メソッド](https://docs.microso
 [IForegroundService インターフェイス](src/Aerie.ForegroundServices/IForegroundService.cs) を実装したクラスを、便宜上 **フォアグラウンド サービス** と呼びます。  
 これは、普通のコンソール アプリケーションのように、一定の処理を行ったら自動的に終了することを想定しています。
 
-ConsoleLifetime の代わりに [ForegroundLifetime クラス](src/Aerie.ForegroundServices/ForegroundLifetime.cs) を組み込むことで、フォアグラウンド サービスの実行が終了したら、自動的に IApplicationLifetime.StopApplication を呼び出して、ホストを終了させます。
+ConsoleLifetime の代わりに [ForegroundLifetime クラス](src/Aerie.ForegroundServices/ForegroundLifetime.cs) を組み込むことで、フォアグラウンド サービスの実行が終了したら、自動的に StopApplication を呼び出して、ホストを終了させます。
 
 使い方は [サンプル](samples/ForegroundServiceSample) を見てください。
 
