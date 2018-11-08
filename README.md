@@ -28,7 +28,7 @@ Main メソッド内で [IHost.RunAsync 拡張メソッド](https://docs.microso
 終了待ち状態を解除して Main の実行を再開し、プロセスを終了させるには、ワーカー スレッドから [IApplicationLifetime インターフェイス](https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.extensions.hosting.iapplicationlifetime?view=aspnetcore-2.1) の [StopApplication メソッド](https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.extensions.hosting.iapplicationlifetime.stopapplication?view=aspnetcore-2.1) を呼んでやる必要があります。
 
 バックグラウンド サービスから呼んでもいいのですが、基本的にバックグラウンド サービスは、ずっと動き続ける性質のものであり、ホストの終了条件を判断することは少ないと思います。  
-そのため、ホスト プロセスの寿命を司る [IHostLifetime インターフェイス](https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.extensions.hosting.ihostlifetime?view=aspnetcore-2.1) というのが用意されています。  
+そのため、ホスト プロセスの寿命を司る [IHostLifetime インターフェイス](https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.extensions.hosting.ihostlifetime?view=aspnetcore-2.1) というのが用意されており、これを実装したクラスが StopApplication メソッドを呼び出します。  
 汎用ホストには既定で [ConsoleLifetime クラス](https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.extensions.hosting.internal.consolelifetime?view=aspnetcore-2.1) が組み込まれており、Ctrl+C を押すと終了させるといった制御はこいつが行っています。
 
 ## フォアグラウンド サービス
