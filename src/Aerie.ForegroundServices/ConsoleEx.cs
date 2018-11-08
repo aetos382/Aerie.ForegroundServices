@@ -7,7 +7,7 @@ namespace Aerie.ForegroundServices
     public static class ConsoleEx
     {
         public static Task<ConsoleKeyInfo> ReadKeyAsync(
-            bool intercept = true,
+            bool intercept = false,
             CancellationToken cancellationToken = default)
         {
             var tcs = new TaskCompletionSource<ConsoleKeyInfo>();
